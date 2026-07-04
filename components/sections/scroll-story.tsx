@@ -21,9 +21,10 @@ export function ScrollStory() {
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: `+=${steps.length * 100}%`,
-        scrub: 1,
+        end: `+=${steps.length * 70}%`,
+        scrub: true,
         pin: true,
+        anticipatePin: 1,
         onUpdate: (self) => {
           gsap.set(progressRef.current, { scaleY: self.progress });
           const activeIndex = Math.min(

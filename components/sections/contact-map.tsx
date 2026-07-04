@@ -52,7 +52,7 @@ export function ContactMap() {
           <iframe
             title="PCS office location"
             src={mapSrc}
-            className="h-64 w-full grayscale invert-[0.92] contrast-[1.1] md:h-72"
+            className="h-64 w-full md:h-72"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

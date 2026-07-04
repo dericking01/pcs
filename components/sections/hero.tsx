@@ -113,7 +113,7 @@ export function Hero() {
           </p>
           <Marquee>
             {CLIENT_LOGOS.map((logo) => (
-              <div key={logo.name} className="mx-8 flex h-10 w-28 shrink-0 items-center justify-center opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0">
+              <div key={logo.name} className="mx-8 flex h-10 w-28 shrink-0 items-center justify-center opacity-90 transition-opacity duration-300 hover:opacity-100">
                 <Image
                   src={logo.src}
                   alt={logo.name}

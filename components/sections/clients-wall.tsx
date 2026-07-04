@@ -29,7 +29,7 @@ export function ClientsWall() {
                 alt={logo.name}
                 width={logo.width}
                 height={logo.height}
-                className="max-h-12 w-auto object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                className="max-h-12 w-auto object-contain opacity-90 transition-opacity duration-300 group-hover:opacity-100"
               />
             </motion.div>
           ))}

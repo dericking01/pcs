@@ -17,7 +17,7 @@ function LogoTile({ logo }: { logo: (typeof CLIENT_LOGOS)[number] }) {
         alt={logo.name}
         width={logo.width}
         height={logo.height}
-        className="max-h-10 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+        className="max-h-10 w-auto object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
       />
     </div>
   );

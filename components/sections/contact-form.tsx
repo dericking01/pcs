@@ -81,11 +81,11 @@ export function ContactForm() {
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <Field label="Full name" name="name" required placeholder="Jane Doe" />
+                <Field label="Full name" name="name" required placeholder="Your Name" />
                 <Field label="Company" name="company" placeholder="Your organization" />
               </div>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <Field label="Email" name="email" type="email" required placeholder="jane@company.com" />
+                <Field label="Email" name="email" type="email" required placeholder="business@company.com" />
                 <Field label="Phone" name="phone" type="tel" placeholder="+255 7XX XXX XXX" />
               </div>
 
