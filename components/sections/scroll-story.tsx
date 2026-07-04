@@ -1,43 +1,28 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { STORY_TIMELINE } from "@/constants/timeline";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ScrollStory() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const steps = stepRefs.current.filter(Boolean) as HTMLDivElement[];
-      if (!steps.length || !progressRef.current || !sectionRef.current) return;
+      if (!progressRef.current || !sectionRef.current) return;
 
-      gsap.set(steps, { opacity: 0.25 });
-      gsap.set(steps[0], { opacity: 1 });
+      gsap.set(progressRef.current, { scaleY: 0 });
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${steps.length * 70}%`,
+        start: "top 60%",
+        end: "bottom 40%",
         scrub: true,
-        pin: true,
-        anticipatePin: 1,
         onUpdate: (self) => {
           gsap.set(progressRef.current, { scaleY: self.progress });
-          const activeIndex = Math.min(
-            steps.length - 1,
-            Math.floor(self.progress * steps.length)
-          );
-          steps.forEach((step, i) => {
-            gsap.to(step, {
-              opacity: i === activeIndex ? 1 : 0.25,
-              duration: 0.3,
-              overwrite: "auto",
-            });
-          });
         },
       });
     }, sectionRef);
@@ -65,12 +50,13 @@ export function ScrollStory() {
           </div>
 
           <div className="flex flex-1 flex-col gap-16 md:gap-24">
-            {STORY_TIMELINE.map((step, i) => (
-              <div
+            {STORY_TIMELINE.map((step) => (
+              <motion.div
                 key={step.title}
-                ref={(el) => {
-                  stepRefs.current[i] = el;
-                }}
+                initial={{ opacity: 0.25, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-35% 0px -35% 0px" }}
+                transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
                 className="max-w-2xl"
               >
                 <span className="mb-4 block font-mono text-sm text-[#38bdf8]">{step.label}</span>
@@ -78,7 +64,7 @@ export function ScrollStory() {
                   {step.title}
                 </h3>
                 <p className="text-lg leading-relaxed text-[#93a3c4]">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
