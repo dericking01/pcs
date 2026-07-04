@@ -6,9 +6,11 @@ import { ArrowLeft, Check } from "lucide-react";
 import { AuroraBackground } from "@/components/shared/aurora-background";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PcsButton } from "@/components/ui/pcs-button";
-import type { Service } from "@/types";
+import { SERVICES } from "@/constants/services";
 
-export function ServiceDetail({ service }: { service: Service }) {
+export function ServiceDetail({ slug }: { slug: string }) {
+  const service = SERVICES.find((s) => s.slug === slug);
+  if (!service) return null;
   const Icon = service.icon;
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { useLayoutEffect, useRef } from "react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { STORY_TIMELINE } from "@/constants/timeline";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -10,39 +10,34 @@ export function ScrollStory() {
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const steps = stepRefs.current.filter(Boolean) as HTMLDivElement[];
-      if (!steps.length || !progressRef.current) return;
+      if (!steps.length || !progressRef.current || !sectionRef.current) return;
 
-      gsap.set(steps.slice(1), { opacity: 0.25 });
+      gsap.set(steps, { opacity: 0.25 });
+      gsap.set(steps[0], { opacity: 1 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${steps.length * 100}%`,
-          scrub: 1,
-          pin: true,
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${steps.length * 100}%`,
+        scrub: 1,
+        pin: true,
+        onUpdate: (self) => {
+          gsap.set(progressRef.current, { scaleY: self.progress });
+          const activeIndex = Math.min(
+            steps.length - 1,
+            Math.floor(self.progress * steps.length)
+          );
+          steps.forEach((step, i) => {
+            gsap.to(step, {
+              opacity: i === activeIndex ? 1 : 0.25,
+              duration: 0.3,
+              overwrite: "auto",
+            });
+          });
         },
-      });
-
-      tl.to(progressRef.current, {
-        scaleY: 1,
-        ease: "none",
-      });
-
-      steps.forEach((step, i) => {
-        if (i === 0) return;
-        tl.to(
-          steps[i - 1],
-          { opacity: 0.25, duration: 0.3 },
-          i - 0.15
-        ).to(
-          step,
-          { opacity: 1, duration: 0.3 },
-          i - 0.15
-        );
       });
     }, sectionRef);
 

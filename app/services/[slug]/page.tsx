@@ -33,7 +33,7 @@ export default async function ServicePage({
 
   return (
     <>
-      <ServiceDetail service={service} />
+      <ServiceDetail slug={service.slug} />
       <CtaSection />
     </>
   );
