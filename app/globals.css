@@ -145,25 +145,37 @@
 
 @layer utilities {
   /* Glassmorphism */
+  /*
+   * Glass panels layer a translucent gradient sheen over a near-opaque navy
+   * base, then add backdrop-filter as a progressive enhancement on top.
+   * The opaque base is load-bearing: some Android WebView/Chrome builds
+   * silently fail to paint backdrop-filter under fixed/transformed
+   * ancestors, which made the mobile nav menu render fully invisible.
+   * Blur radius is also kept low (10-14px, not 20-28px) because iOS Safari's
+   * backdrop-filter compositing cost scales sharply with radius, and a
+   * fixed, always-blurred navbar recomputes it every scroll frame.
+   */
   .glass {
-    background: linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.015)
-    );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+      rgba(6, 13, 34, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    contain: paint;
   }
   .glass-strong {
-    background: linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.03)
-    );
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+      rgba(6, 13, 34, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.14);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    contain: paint;
   }
 
   /* Gradient text */

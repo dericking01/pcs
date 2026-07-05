@@ -48,7 +48,7 @@ export function ServicesShowcase() {
                 transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
                 onMouseEnter={() => setHovered(service.slug)}
                 onMouseLeave={() => setHovered(null)}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl transition-colors duration-500 hover:border-[#38bdf8]/40"
+                className="glass group relative overflow-hidden rounded-3xl p-8 transition-colors duration-500 hover:border-[#38bdf8]/40"
               >
                 <div
                   className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full opacity-0 blur-[80px] transition-opacity duration-500 group-hover:opacity-60"

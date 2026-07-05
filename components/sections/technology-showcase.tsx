@@ -106,14 +106,14 @@ export function TechnologyShowcase() {
           </GlassCard>
 
           <motion.div
-            className="absolute -right-6 -top-6 hidden rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl md:block"
+            className="glass absolute -right-6 -top-6 hidden rounded-2xl p-3 md:block"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           >
             <Cloud className="size-6 text-[#38bdf8]" />
           </motion.div>
           <motion.div
-            className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl md:block"
+            className="glass absolute -bottom-6 -left-6 hidden rounded-2xl p-3 md:block"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >
