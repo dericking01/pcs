@@ -14,7 +14,7 @@ export interface Service {
   icon: LucideIcon;
   benefits: string[];
   workflow: { title: string; description: string }[];
-  category: "business" | "technology" | "health";
+  category: "business" | "technology" | "health" | "coaching";
 }
 
 export interface Industry {

@@ -15,7 +15,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Consulting built around your operating reality."
-        description="Thirteen service lines spanning business strategy, technology, and public health — delivered by senior consultants who have run these functions themselves."
+        description="Fourteen service lines spanning business strategy, technology, coaching, and public health — delivered by senior consultants who have run these functions themselves."
       />
       <ServicesGrid />
       <CtaSection />

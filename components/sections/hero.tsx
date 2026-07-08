@@ -57,7 +57,7 @@ export function Hero() {
             Business &middot; Technology &middot; Public Health
           </motion.div>
 
-          <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {HEADLINE_LINES.map((text, i) => (
               <span key={text} className="block overflow-hidden">
                 <motion.span
@@ -133,7 +133,7 @@ export function Hero() {
         transition={{ delay: 2, duration: 0.8 }}
         className="absolute bottom-28 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/50 md:flex"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em]">Pannecia Consulting Services</span>
         <ChevronDown className="size-4 animate-bounce" />
       </motion.div>
     </section>

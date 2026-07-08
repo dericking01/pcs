@@ -1,7 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { NAV_ITEMS, COMPANY } from "@/constants/nav";
 import { SERVICES } from "@/constants/services";
+
+const COUNTRY_FLAGS: Record<string, string> = {
+  Tanzania: "tz",
+  Kenya: "ke",
+  Ghana: "gh",
+  Nigeria: "ng",
+};
 
 export function Footer() {
   return (
@@ -24,8 +32,15 @@ export function Footer() {
               {COMPANY.countries.map((country) => (
                 <span
                   key={country}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#93a3c4]"
+                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 py-1 pl-1.5 pr-3 text-xs text-[#93a3c4]"
                 >
+                  <Image
+                    src={`/flags/${COUNTRY_FLAGS[country]}.svg`}
+                    alt=""
+                    width={20}
+                    height={15}
+                    className="h-3.5 w-5 rounded-[3px] object-cover"
+                  />
                   {country}
                 </span>
               ))}

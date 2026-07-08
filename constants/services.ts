@@ -11,6 +11,7 @@ import {
   MessagesSquare,
   GraduationCap,
   Stethoscope,
+  Compass,
 } from "lucide-react";
 import type { Service } from "@/types";
 
@@ -301,10 +302,33 @@ export const SERVICES: Service[] = [
     ],
     category: "health",
   },
+  {
+    slug: "executive-leadership-coaching",
+    title: "Executive & Leadership Coaching",
+    shortDescription:
+      "One-on-one and team coaching grounded in evidence-based leadership assessment.",
+    description:
+      "We coach executives and rising leaders using evidence-based tools — including the Lumina Leader, Spark, and Emotion assessments — to build self-awareness, adapt leadership style to the needs of their people, and strengthen decision-making under pressure. Coaching is paired with practical follow-through, not a one-off workshop.",
+    icon: Compass,
+    benefits: [
+      "One-on-one executive coaching with structured follow-up",
+      "Evidence-based leadership and personality assessment",
+      "Team coaching to build communication and trust",
+      "Coaching plans tied to real business objectives",
+    ],
+    workflow: [
+      { title: "Assess", description: "Use validated tools to profile leadership style and strengths." },
+      { title: "Plan", description: "Set a coaching plan tied to specific leadership goals." },
+      { title: "Coach", description: "Run structured one-on-one or team coaching sessions." },
+      { title: "Reinforce", description: "Track progress and reinforce habits after coaching ends." },
+    ],
+    category: "coaching",
+  },
 ];
 
 export const SERVICE_CATEGORIES = [
   { key: "business", label: "Business & Management" },
   { key: "technology", label: "Technology & Digital" },
   { key: "health", label: "Public Health & Community" },
+  { key: "coaching", label: "Coaching" },
 ] as const;
