@@ -22,14 +22,14 @@ export function ClientsWall() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: (i % 4) * 0.06 }}
-              className="group flex h-32 flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-[#38bdf8]/40"
+              className="group flex h-32 flex-col items-center justify-center gap-3 rounded-2xl bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:scale-105"
             >
               <Image
                 src={logo.src}
                 alt={logo.name}
                 width={logo.width}
                 height={logo.height}
-                className="max-h-12 w-auto object-contain opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+                className="max-h-12 w-auto object-contain"
               />
             </motion.div>
           ))}
