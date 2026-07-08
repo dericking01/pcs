@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -40,10 +41,14 @@ export function LoadingScreen() {
             transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
             className="flex flex-col items-center gap-4"
           >
-            <div className="flex items-center gap-1 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-              <span>PCS</span>
-              <span className="h-2 w-2 animate-pulse-glow rounded-full bg-[#38bdf8]" />
-            </div>
+            <Image
+              src="/brand/pcs-logo-white.png"
+              alt="PCS — Pannecia Consulting Services"
+              width={2375}
+              height={2323}
+              priority
+              className="h-16 w-auto md:h-20"
+            />
             <p className="text-xs uppercase tracking-[0.4em] text-[#93a3c4]">
               Connecting the Dots
             </p>

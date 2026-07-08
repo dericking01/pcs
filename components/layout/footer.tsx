@@ -18,11 +18,14 @@ export function Footer() {
       <div className="container-px relative mx-auto max-w-7xl py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5">
-              <span className="relative flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0f6fff] to-[#38bdf8]">
-                <span className="size-2.5 rounded-full bg-white" />
-              </span>
-              <span className="text-lg font-semibold tracking-tight text-white">PCS</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/brand/pcs-logo-white.png"
+                alt="PCS — Pannecia Consulting Services"
+                width={2375}
+                height={2323}
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-[#93a3c4]">
               {COMPANY.name} — {COMPANY.tagline}. Connecting business, technology,

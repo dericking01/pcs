@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -40,15 +41,15 @@ export function Navbar() {
             scrolled ? "glass" : "border border-transparent bg-transparent"
           )}
         >
-          <Link href="/" className="group flex items-center gap-2.5" data-cursor-hover>
-            <span className="relative flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-[#0f6fff] to-[#38bdf8]">
-              <span className="size-2.5 rounded-full bg-white" />
-              <span className="absolute size-1.5 rounded-full bg-white/70" style={{ top: 4, left: 4 }} />
-              <span className="absolute size-1.5 rounded-full bg-white/70" style={{ bottom: 4, right: 4 }} />
-            </span>
-            <span className="text-lg font-semibold tracking-tight text-white">
-              PCS
-            </span>
+          <Link href="/" className="flex items-center" data-cursor-hover>
+            <Image
+              src="/brand/pcs-logo-white.png"
+              alt="PCS — Pannecia Consulting Services"
+              width={2375}
+              height={2323}
+              priority
+              className="h-9 w-auto"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
