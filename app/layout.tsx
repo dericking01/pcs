@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { Navbar } from "@/components/layout/navbar";
@@ -17,6 +18,20 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Self-hosted, Latin-subset from the licensed DengXian OTF files (originals
+// are full CJK fonts at ~15MB each; subset to the Latin glyphs this site
+// actually uses so every visitor gets the real typeface, not just a
+// system-font fallback, without a multi-megabyte font payload.
+const dengXian = localFont({
+  src: [
+    { path: "./fonts/dengxian/DengXian-Light.otf", weight: "300", style: "normal" },
+    { path: "./fonts/dengxian/DengXian-Regular.otf", weight: "400", style: "normal" },
+    { path: "./fonts/dengxian/DengXian-Bold.otf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-dengxian",
   display: "swap",
 });
 
@@ -68,7 +83,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${dengXian.variable} dark h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <script
           type="application/ld+json"
