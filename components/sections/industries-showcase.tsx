@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PcsButton } from "@/components/ui/pcs-button";
 import { INDUSTRIES } from "@/constants/industries";
-import { COMPANY } from "@/constants/nav";
+import { COMPANY, COUNTRY_FLAGS } from "@/constants/nav";
 
 export function IndustriesShowcase({ showAllLink = true }: { showAllLink?: boolean }) {
   return (
@@ -55,13 +56,21 @@ export function IndustriesShowcase({ showAllLink = true }: { showAllLink?: boole
           <p className="text-sm uppercase tracking-[0.3em] text-[#6b7ca0]">Regional footprint</p>
           <div className="flex flex-wrap items-center gap-3">
             {COMPANY.countries.map((country) => (
-              <span
+              <motion.div
                 key={country}
-                className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white"
+                whileHover={{ y: -3, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                title={country}
+                className="overflow-hidden rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.25)] ring-1 ring-white/15"
               >
-                <span className="size-1.5 rounded-full bg-[#38bdf8]" />
-                {country}
-              </span>
+                <Image
+                  src={`/flags/${COUNTRY_FLAGS[country]}.svg`}
+                  alt={country}
+                  width={48}
+                  height={36}
+                  className="block h-9 w-12 object-cover"
+                />
+              </motion.div>
             ))}
           </div>
         </div>

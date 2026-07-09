@@ -1,15 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { NAV_ITEMS, COMPANY } from "@/constants/nav";
+import { NAV_ITEMS, COMPANY, COUNTRY_FLAGS } from "@/constants/nav";
 import { SERVICES } from "@/constants/services";
-
-const COUNTRY_FLAGS: Record<string, string> = {
-  Tanzania: "tz",
-  Kenya: "ke",
-  Ghana: "gh",
-  Nigeria: "ng",
-};
 
 export function Footer() {
   return (

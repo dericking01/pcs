@@ -27,3 +27,10 @@ export const COMPANY = {
   countries: ["Tanzania", "Kenya", "Ghana", "Nigeria"],
   mapEmbedQuery: "14111 Kimweri Rd, Masaki, Dar es Salaam, Tanzania",
 };
+
+export const COUNTRY_FLAGS: Record<string, string> = {
+  Tanzania: "tz",
+  Kenya: "ke",
+  Ghana: "gh",
+  Nigeria: "ng",
+};
