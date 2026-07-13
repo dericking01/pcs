@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface GooglePlayBadgeProps {
@@ -15,15 +15,17 @@ export function GooglePlayBadge({ href, className }: GooglePlayBadgeProps) {
       data-cursor-hover
       onClick={(e) => e.stopPropagation()}
       className={cn(
-        "group/play inline-flex items-center gap-3 rounded-xl border border-white/15 bg-black px-4 py-2.5 transition-all duration-300 hover:border-white/30 hover:bg-neutral-900",
+        "inline-flex items-center transition-transform duration-300 hover:scale-[1.03]",
         className
       )}
     >
-      <Play className="size-6 shrink-0 fill-white text-white transition-transform duration-300 group-hover/play:scale-110" />
-      <span className="flex flex-col items-start leading-none">
-        <span className="text-[10px] uppercase tracking-wider text-white/70">Get it on</span>
-        <span className="font-semibold text-white">Google Play</span>
-      </span>
+      <Image
+        src="/badges/google-play-badge.png"
+        alt="Get it on Google Play"
+        width={646}
+        height={250}
+        className="h-[52px] w-auto"
+      />
     </a>
   );
 }

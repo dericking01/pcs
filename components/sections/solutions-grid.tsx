@@ -5,12 +5,17 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Check, Play } from "lucide-react";
 import { SOLUTIONS } from "@/constants/solutions";
 
+const orderedSolutions = [
+  ...SOLUTIONS.filter((s) => s.slug === "nominate"),
+  ...SOLUTIONS.filter((s) => s.slug !== "nominate"),
+];
+
 export function SolutionsGrid() {
   return (
     <section className="relative bg-[#020617] pb-32">
       <div className="container-px mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {SOLUTIONS.map((solution, i) => {
+        <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+          {orderedSolutions.map((solution, i) => {
             const Icon = solution.icon;
             return (
               <motion.div
@@ -23,7 +28,7 @@ export function SolutionsGrid() {
                 <Link
                   href={`/solutions/${solution.slug}`}
                   data-cursor-hover
-                  className="group flex h-full flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-[#38bdf8]/40"
+                  className="group flex flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-[#38bdf8]/40"
                 >
                   <div className="flex items-start justify-between">
                     <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}>
@@ -55,7 +60,7 @@ export function SolutionsGrid() {
                     </ul>
                   )}
 
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-[#38bdf8] transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-[#38bdf8] transition-transform duration-300 group-hover:translate-x-1">
                     View details
                     <ArrowUpRight className="size-4" />
                   </span>

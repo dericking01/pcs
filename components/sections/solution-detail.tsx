@@ -8,6 +8,7 @@ import { ArrowLeft, Check, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AuroraBackground } from "@/components/shared/aurora-background";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { GooglePlayBadge } from "@/components/ui/google-play-badge";
+import { ScreenshotGallery } from "@/components/sections/screenshot-gallery";
 import { SOLUTIONS } from "@/constants/solutions";
 
 export function SolutionDetail({ slug }: { slug: string }) {
@@ -84,34 +85,15 @@ export function SolutionDetail({ slug }: { slug: string }) {
       </section>
 
       {screenshots.length > 0 && (
-        <section className="relative bg-[#020617] pb-8">
+        <section className="relative overflow-hidden bg-[#020617] pb-8">
           <div className="container-px mx-auto max-w-7xl">
             <SectionHeading eyebrow="See it in action" title="App screenshots" className="mb-10" />
-            <div className="flex gap-5 overflow-x-auto pb-6 [scrollbar-width:thin]">
-              {screenshots.map((src, i) => (
-                <motion.button
-                  key={src}
-                  type="button"
-                  onClick={() => setLightboxIndex(i)}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                  whileHover={{ y: -8 }}
-                  data-cursor-hover
-                  className="group relative shrink-0 overflow-hidden rounded-2xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.4)]"
-                >
-                  <Image
-                    src={src}
-                    alt={`${solution.title} screenshot ${i + 1}`}
-                    width={225}
-                    height={400}
-                    className="h-[340px] w-auto object-cover transition-transform duration-500 group-hover:scale-105 md:h-[420px]"
-                  />
-                </motion.button>
-              ))}
-            </div>
           </div>
+          <ScreenshotGallery
+            screenshots={screenshots}
+            alt={solution.title}
+            onSelect={(i) => setLightboxIndex(i)}
+          />
         </section>
       )}
 
