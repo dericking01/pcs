@@ -22,6 +22,8 @@ export interface Solution {
   icon: LucideIcon;
   accent: string;
   keyFeatures?: string[];
+  playStoreUrl?: string;
+  screenshots?: string[];
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -85,6 +87,20 @@ export const SOLUTIONS: Solution[] = [
       "A digital nomination and recognition platform that simplifies candidate nominations, approvals, evaluations, and selection — supporting awards, scholarships, leadership programs, and recognition initiatives.",
     icon: Trophy,
     accent: "from-yellow-500/20 to-amber-500/10 text-yellow-300",
+    keyFeatures: [
+      "Transparent nomination and approval workflows",
+      "Category-based voting sessions with live leaderboards",
+      "Stakeholder collaboration on evaluation and selection",
+      "Built for awards, scholarships, and leadership programs",
+    ],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=co.tz.pcs.nominate",
+    screenshots: [
+      "/products/nomination1.jpeg",
+      "/products/nomination2.jpeg",
+      "/products/nomination3.jpeg",
+      "/products/nomination4.jpeg",
+      "/products/nomination5.jpeg",
+    ],
   },
   {
     slug: "infoma",

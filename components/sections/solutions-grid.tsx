@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check, Play } from "lucide-react";
 import { SOLUTIONS } from "@/constants/solutions";
 
 export function SolutionsGrid() {
@@ -18,29 +19,47 @@ export function SolutionsGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
-                className="flex h-full flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-8"
               >
-                <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}>
-                  <Icon className="size-7" />
-                </div>
-                <div>
-                  <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">
-                    {solution.tag}
-                  </span>
-                  <h3 className="mt-2 text-xl font-semibold text-white">{solution.title}</h3>
-                </div>
-                <p className="text-sm leading-relaxed text-[#93a3c4]">{solution.description}</p>
+                <Link
+                  href={`/solutions/${solution.slug}`}
+                  data-cursor-hover
+                  className="group flex h-full flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-[#38bdf8]/40"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}>
+                      <Icon className="size-7" />
+                    </div>
+                    {solution.playStoreUrl && (
+                      <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                        <Play className="size-3 fill-current" />
+                        Google Play
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">
+                      {solution.tag}
+                    </span>
+                    <h3 className="mt-2 text-xl font-semibold text-white">{solution.title}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#93a3c4]">{solution.description}</p>
 
-                {solution.keyFeatures && (
-                  <ul className="mt-auto flex flex-col gap-2 border-t border-white/10 pt-5">
-                    {solution.keyFeatures.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-sm text-white/80">
-                        <Check className="mt-0.5 size-4 shrink-0 text-[#38bdf8]" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                  {solution.keyFeatures && (
+                    <ul className="flex flex-col gap-2 border-t border-white/10 pt-5">
+                      {solution.keyFeatures.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2 text-sm text-white/80">
+                          <Check className="mt-0.5 size-4 shrink-0 text-[#38bdf8]" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-[#38bdf8] transition-transform duration-300 group-hover:translate-x-1">
+                    View details
+                    <ArrowUpRight className="size-4" />
+                  </span>
+                </Link>
               </motion.div>
             );
           })}
