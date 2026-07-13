@@ -1,13 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { PcsButton } from "@/components/ui/pcs-button";
 import { INDUSTRIES } from "@/constants/industries";
 import { COMPANY, COUNTRY_FLAGS } from "@/constants/nav";
 
 export function IndustriesShowcase({ showAllLink = true }: { showAllLink?: boolean }) {
+  const [hovered, setHovered] = useState<string | null>(null);
+
   return (
     <section className="relative overflow-hidden bg-[#020617] py-32">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-30" />
@@ -28,6 +32,7 @@ export function IndustriesShowcase({ showAllLink = true }: { showAllLink?: boole
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {INDUSTRIES.map((industry, i) => {
             const Icon = industry.icon;
+            const isHovered = hovered === industry.slug;
             return (
               <motion.div
                 key={industry.slug}
@@ -35,15 +40,30 @@ export function IndustriesShowcase({ showAllLink = true }: { showAllLink?: boole
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.4, delay: (i % 4) * 0.06 }}
-                whileHover={{ y: -4 }}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors duration-300 hover:border-[#38bdf8]/40 hover:bg-white/[0.05]"
+                animate={{ y: isHovered ? -4 : 0 }}
+                onMouseEnter={() => setHovered(industry.slug)}
+                onMouseLeave={() => setHovered(null)}
+                className={cn(
+                  "relative flex flex-col gap-4 rounded-2xl border p-6 transition-colors duration-300",
+                  isHovered ? "border-[#38bdf8]/40 bg-white/[0.05]" : "border-white/10 bg-white/[0.02]"
+                )}
               >
-                <div className="flex size-11 items-center justify-center rounded-xl bg-white/5 text-[#38bdf8] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#38bdf8]/15">
+                <div
+                  className={cn(
+                    "flex size-11 items-center justify-center rounded-xl text-[#38bdf8] transition-transform duration-300",
+                    isHovered ? "scale-110 bg-[#38bdf8]/15" : "bg-white/5"
+                  )}
+                >
                   <Icon className="size-5" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-white">{industry.name}</h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-[#93a3c4] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p
+                    className={cn(
+                      "mt-1.5 text-xs leading-relaxed text-white/80 transition-opacity duration-300",
+                      isHovered ? "opacity-100" : "opacity-0"
+                    )}
+                  >
                     {industry.description}
                   </p>
                 </div>
