@@ -10,18 +10,18 @@ export function LoadingScreen() {
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const alreadyShown = sessionStorage.getItem("pcs-loaded");
-    if (alreadyShown) return;
+    // Full 4s intro on the very first visit; a shorter 2s replay on every
+    // reload after that — never fully skipped, unlike before.
+    const hasShownBefore = sessionStorage.getItem("pcs-loaded");
+    const duration = reducedMotion ? 200 : hasShownBefore ? 3000 : 6000;
+
     setLoading(true);
     document.documentElement.style.overflow = "hidden";
-    const timeout = setTimeout(
-      () => {
-        setLoading(false);
-        document.documentElement.style.overflow = "";
-        sessionStorage.setItem("pcs-loaded", "1");
-      },
-      reducedMotion ? 200 : 1500
-    );
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      document.documentElement.style.overflow = "";
+      sessionStorage.setItem("pcs-loaded", "1");
+    }, duration);
     return () => clearTimeout(timeout);
   }, [reducedMotion]);
 
