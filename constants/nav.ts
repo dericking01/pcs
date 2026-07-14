@@ -34,4 +34,18 @@ export const COUNTRY_FLAGS: Record<string, string> = {
   Kenya: "ke",
   Ghana: "gh",
   Nigeria: "ng",
+  Cameroon: "cm",
+  Mozambique: "mz",
 };
+
+// Broader regional presence shown in the loading-screen intro — the four
+// countries in COMPANY.countries are PCS's current core markets, this list
+// is the wider network reach featured on the brand cover materials.
+export const LOADING_SCREEN_COUNTRIES = [
+  "Tanzania",
+  "Kenya",
+  "Ghana",
+  "Nigeria",
+  "Cameroon",
+  "Mozambique",
+];
