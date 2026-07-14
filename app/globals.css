@@ -48,6 +48,13 @@
   --color-pcs-accent: var(--pcs-accent);
   --color-pcs-bg: var(--pcs-bg);
 
+  /* Every page container uses max-w-7xl. Tailwind's default (80rem/1280px)
+     leaves large dead margins on 28"+ / ultrawide monitors, so widen just
+     this one size. A max-width only ever engages once the viewport exceeds
+     it, so this has zero effect below 1536px — laptops and smaller
+     monitors render identically to before. */
+  --container-7xl: 96rem;
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
