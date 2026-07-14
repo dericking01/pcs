@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -59,6 +59,24 @@ function NodePoints() {
 
 function GlobeGroup() {
   const groupRef = useRef<THREE.Group>(null);
+  // viewport is in Three.js world units at the camera's focal plane, and is
+  // recalculated reactively on resize — using it (instead of a fixed x
+  // offset) keeps the globe anchored to the same relative position on any
+  // aspect ratio. A fixed world-space offset like x=2.4 looks right on a
+  // wide desktop frustum but falls completely outside a narrow mobile
+  // frustum, which is why the globe disappeared entirely on phones.
+  const { viewport } = useThree();
+  const isNarrow = viewport.width < 4.6;
+
+  // On mobile there's no room to sit beside the text, so instead of hiding
+  // in a corner it becomes a bold, centered atmospheric presence behind the
+  // headline — the wireframe is sparse/translucent enough that white text
+  // stays fully legible on top of it, so bigger reads as "designed", not
+  // "in the way".
+  const position: [number, number, number] = isNarrow
+    ? [viewport.width * 0.06, -viewport.height * 0.02, 0]
+    : [2.4, 0.1, 0];
+  const scale = isNarrow ? 1.15 : 1.3;
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -68,7 +86,7 @@ function GlobeGroup() {
 
   return (
     <Float speed={1.4} rotationIntensity={0.4} floatIntensity={1}>
-      <group ref={groupRef} position={[2.4, 0.1, 0]} scale={1.3}>
+      <group ref={groupRef} position={position} scale={scale}>
         <mesh>
           <icosahedronGeometry args={[1, 4]} />
           <MeshDistortMaterial

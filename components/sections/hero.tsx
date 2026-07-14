@@ -45,6 +45,19 @@ export function Hero() {
 
       <MouseGlow springX={springX} springY={springY} />
 
+      {/* Mobile-only scrim: the globe sits centered behind the full-width
+          text stack there (no side-by-side room like desktop), so this
+          keeps paragraph-text contrast solid without hiding the globe —
+          it fades out toward the edges where the globe is more decorative. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] md:hidden"
+        style={{
+          background:
+            "radial-gradient(120% 70% at 30% 45%, rgba(2,6,23,0.78) 0%, rgba(2,6,23,0.45) 45%, transparent 80%)",
+        }}
+      />
+
       <div className="container-px relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center pt-32 pb-20">
         <div className="max-w-4xl">
           <motion.div
