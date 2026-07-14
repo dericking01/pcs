@@ -16,4 +16,5 @@ export const CLIENT_LOGOS: ClientLogo[] = [
   { name: "Tata", src: "/logos/clients/tata.jpeg", width: 200, height: 200 },
   { name: "ESAAMG", src: "/logos/clients/esaam.png", width: 313, height: 313 },
   { name: "PII", src: "/logos/clients/pii.png", width: 438, height: 271 },
+  { name: "Afyacall", src: "/logos/clients/afyacall.png", width: 438, height: 271 },
 ];
