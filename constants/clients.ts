@@ -11,7 +11,7 @@ export const CLIENT_LOGOS: ClientLogo[] = [
   { name: "AMDT", src: "/logos/clients/amdt.png", width: 447, height: 120 },
   { name: "CARE", src: "/logos/clients/care_new.png", width: 880, height: 283 },
   { name: "d.light", src: "/logos/clients/dlight.png", width: 543, height: 400 },
-  { name: "Godrej", src: "/logos/clients/godrej.png", width: 338, height: 163 },
+  { name: "Godrej", src: "/logos/clients/Godrej_Logo.webp", width: 338, height: 163 },
   { name: "Master Drilling", src: "/logos/clients/master-drilling.png", width: 275, height: 183 },
   { name: "Tata", src: "/logos/clients/tata.jpeg", width: 200, height: 200 },
   { name: "ESAAMG", src: "/logos/clients/esaam.png", width: 313, height: 313 },
