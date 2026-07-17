@@ -12,7 +12,7 @@ interface AnimatedCounterProps {
 
 export function AnimatedCounter({ value, prefix = "", suffix = "", className }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { damping: 30, stiffness: 60 });
 
