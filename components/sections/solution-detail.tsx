@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, Check, ChevronLeft, ChevronRight, Download, Eye, FileText, X } from "lucide-react";
 import { AuroraBackground } from "@/components/shared/aurora-background";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { GooglePlayBadge } from "@/components/ui/google-play-badge";
@@ -116,6 +116,66 @@ export function SolutionDetail({ slug }: { slug: string }) {
                 </motion.li>
               ))}
             </ul>
+          </div>
+        </section>
+      )}
+
+      {solution.documentUrl && (
+        <section className="relative bg-[#020617] pb-20">
+          <div className="container-px mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px 0px" }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-10"
+            >
+              <div
+                className={`pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-gradient-to-br ${solution.accent} opacity-20 blur-3xl`}
+              />
+              <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-4">
+                  <div
+                    className={`flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}
+                  >
+                    <FileText className="size-6" />
+                  </div>
+                  <div>
+                    <span className="mb-1 block text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">
+                      Documentation
+                    </span>
+                    <h3 className="text-xl font-semibold text-white">
+                      {solution.documentLabel ?? "Terms & Conditions"}
+                    </h3>
+                    <p className="mt-1.5 max-w-md text-sm leading-relaxed text-[#93a3c4]">
+                      Read or download the official {solution.documentLabel?.toLowerCase() ?? "terms and conditions"}{" "}
+                      for {solution.title}.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex shrink-0 flex-wrap items-center gap-3">
+                  <a
+                    href={encodeURI(solution.documentUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor-hover
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  >
+                    <Eye className="size-4" />
+                    View
+                  </a>
+                  <a
+                    href={encodeURI(solution.documentUrl)}
+                    download
+                    data-cursor-hover
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#020617] transition-colors hover:bg-white/90"
+                  >
+                    <Download className="size-4" />
+                    Download
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
       )}

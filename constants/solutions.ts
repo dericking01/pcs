@@ -24,6 +24,8 @@ export interface Solution {
   keyFeatures?: string[];
   playStoreUrl?: string;
   screenshots?: string[];
+  documentUrl?: string;
+  documentLabel?: string;
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -101,6 +103,8 @@ export const SOLUTIONS: Solution[] = [
       "/products/nomination4.jpeg",
       "/products/nomination5.jpeg",
     ],
+    documentUrl: "/docs/Nominate App Terms and Condition.pdf",
+    documentLabel: "Terms & Conditions",
   },
   {
     slug: "infoma",

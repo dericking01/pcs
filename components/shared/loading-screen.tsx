@@ -50,6 +50,14 @@ export function LoadingScreen() {
               priority
               className="h-16 w-auto md:h-20"
             />
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-sm font-medium tracking-wide text-white/90 md:text-base"
+            >
+              Pannecia Consulting Services
+            </motion.p>
             <p className="text-xs uppercase tracking-[0.4em] text-[#93a3c4]">
               Connecting the Dots
             </p>
