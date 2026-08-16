@@ -106,7 +106,7 @@ export const SOLUTIONS: Solution[] = [
     logoImage: "/products/nominate.jpeg",
     documents: [
       { label: "Terms & Conditions", url: "/docs/Nominate App Terms and Condition.pdf" },
-      { label: "Privacy Policy", url: "/docs/Privacy Policy for the Nominate App.docx" },
+      { label: "Privacy Policy", url: "/docs/Privacy Policy for the Nominate App.pdf" },
     ],
   },
   {
