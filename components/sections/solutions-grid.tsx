@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check, Play } from "lucide-react";
 import { SOLUTIONS, type Solution } from "@/constants/solutions";
@@ -29,8 +30,20 @@ function SolutionCard({ solution, delay }: { solution: Solution; delay: number }
         className="group flex h-full flex-col gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-[#38bdf8]/40"
       >
         <div className="flex items-start justify-between">
-          <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}>
-            <Icon className="size-7" />
+          <div className="flex size-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10">
+            {solution.logoImage ? (
+              <Image
+                src={solution.logoImage}
+                alt={`${solution.title} logo`}
+                width={56}
+                height={56}
+                className="size-full object-cover"
+              />
+            ) : (
+              <div className={`flex size-full items-center justify-center bg-gradient-to-br ${solution.accent}`}>
+                <Icon className="size-7" />
+              </div>
+            )}
           </div>
           {solution.playStoreUrl && (
             <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">

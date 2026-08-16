@@ -24,8 +24,8 @@ export interface Solution {
   keyFeatures?: string[];
   playStoreUrl?: string;
   screenshots?: string[];
-  documentUrl?: string;
-  documentLabel?: string;
+  logoImage?: string;
+  documents?: { label: string; url: string }[];
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -103,8 +103,11 @@ export const SOLUTIONS: Solution[] = [
       "/products/nomination4.jpeg",
       "/products/nomination5.jpeg",
     ],
-    documentUrl: "/docs/Nominate App Terms and Condition.pdf",
-    documentLabel: "Terms & Conditions",
+    logoImage: "/products/nominate.jpeg",
+    documents: [
+      { label: "Terms & Conditions", url: "/docs/Nominate App Terms and Condition.pdf" },
+      { label: "Privacy Policy", url: "/docs/Privacy Policy for the Nominate App.docx" },
+    ],
   },
   {
     slug: "infoma",
@@ -114,6 +117,7 @@ export const SOLUTIONS: Solution[] = [
       "A cybersecurity monitoring and threat intelligence platform that continuously monitors servers, websites, and social media accounts — with phishing and scam detection to flag malicious content before it causes harm.",
     icon: ShieldAlert,
     accent: "from-red-500/20 to-rose-500/10 text-red-300",
+    logoImage: "/products/informa.jpeg",
     keyFeatures: [
       "Server, website, and social media monitoring",
       "Real-time threat alerts and risk analytics",

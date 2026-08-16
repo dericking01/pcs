@@ -131,8 +131,20 @@ export function FeaturedSolutions() {
               >
                 <Link href={`/solutions/${solution.slug}`} className="block h-full" data-cursor-hover>
                   <GlassCard className="group flex h-full flex-col gap-5 p-8">
-                    <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}>
-                      <Icon className="size-7" />
+                    <div className="flex size-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10">
+                      {solution.logoImage ? (
+                        <Image
+                          src={solution.logoImage}
+                          alt={`${solution.title} logo`}
+                          width={56}
+                          height={56}
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        <div className={`flex size-full items-center justify-center bg-gradient-to-br ${solution.accent}`}>
+                          <Icon className="size-7" />
+                        </div>
+                      )}
                     </div>
                     <div>
                       <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">

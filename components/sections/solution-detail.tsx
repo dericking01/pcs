@@ -45,9 +45,21 @@ export function SolutionDetail({ slug }: { slug: string }) {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`mb-6 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}
+                className="mb-6 flex size-16 items-center justify-center overflow-hidden rounded-2xl border border-white/10"
               >
-                <Icon className="size-8" />
+                {solution.logoImage ? (
+                  <Image
+                    src={solution.logoImage}
+                    alt={`${solution.title} logo`}
+                    width={64}
+                    height={64}
+                    className="size-full object-cover"
+                  />
+                ) : (
+                  <div className={`flex size-full items-center justify-center bg-gradient-to-br ${solution.accent}`}>
+                    <Icon className="size-8" />
+                  </div>
+                )}
               </motion.div>
               <span className="mb-3 inline-block text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">
                 {solution.tag}
@@ -120,62 +132,62 @@ export function SolutionDetail({ slug }: { slug: string }) {
         </section>
       )}
 
-      {solution.documentUrl && (
+      {solution.documents && solution.documents.length > 0 && (
         <section className="relative bg-[#020617] pb-20">
           <div className="container-px mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px 0px" }}
-              transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-10"
-            >
-              <div
-                className={`pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-gradient-to-br ${solution.accent} opacity-20 blur-3xl`}
-              />
-              <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-start gap-4">
+            <SectionHeading eyebrow="Documentation" title="Policies & agreements" className="mb-10" />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {solution.documents.map((doc, i) => (
+                <motion.div
+                  key={doc.url}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px 0px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8"
+                >
                   <div
-                    className={`flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}
-                  >
-                    <FileText className="size-6" />
+                    className={`pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-gradient-to-br ${solution.accent} opacity-20 blur-3xl`}
+                  />
+                  <div className="relative flex flex-col gap-6">
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${solution.accent}`}
+                      >
+                        <FileText className="size-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-white">{doc.label}</h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-[#93a3c4]">
+                          Read or download the official {doc.label.toLowerCase()} for {solution.title}.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <a
+                        href={encodeURI(doc.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-cursor-hover
+                        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                      >
+                        <Eye className="size-4" />
+                        View
+                      </a>
+                      <a
+                        href={encodeURI(doc.url)}
+                        download
+                        data-cursor-hover
+                        className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#020617] transition-colors hover:bg-white/90"
+                      >
+                        <Download className="size-4" />
+                        Download
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <span className="mb-1 block text-xs font-medium uppercase tracking-[0.25em] text-[#38bdf8]">
-                      Documentation
-                    </span>
-                    <h3 className="text-xl font-semibold text-white">
-                      {solution.documentLabel ?? "Terms & Conditions"}
-                    </h3>
-                    <p className="mt-1.5 max-w-md text-sm leading-relaxed text-[#93a3c4]">
-                      Read or download the official {solution.documentLabel?.toLowerCase() ?? "terms and conditions"}{" "}
-                      for {solution.title}.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-wrap items-center gap-3">
-                  <a
-                    href={encodeURI(solution.documentUrl)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cursor-hover
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                  >
-                    <Eye className="size-4" />
-                    View
-                  </a>
-                  <a
-                    href={encodeURI(solution.documentUrl)}
-                    download
-                    data-cursor-hover
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#020617] transition-colors hover:bg-white/90"
-                  >
-                    <Download className="size-4" />
-                    Download
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       )}
