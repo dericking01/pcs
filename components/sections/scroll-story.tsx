@@ -31,7 +31,7 @@ export function ScrollStory() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#020617] py-16 md:py-32">
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#020617] py-8 md:py-32">
       <div className="container-px mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="How we work"

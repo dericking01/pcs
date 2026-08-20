@@ -118,10 +118,10 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.6 }}
-        className="relative z-10 border-t border-white/10 py-8"
+        className="relative z-10 border-t border-white/10 py-4 md:py-8"
       >
         <div className="container-px mx-auto max-w-7xl">
-          <p className="mb-6 text-center text-xs uppercase tracking-[0.3em] text-[#6b7ca0] md:text-left">
+          <p className="mb-4 text-center text-xs uppercase tracking-[0.3em] text-[#6b7ca0] md:mb-6 md:text-left">
             Trusted by leading organizations
           </p>
           <Marquee>
