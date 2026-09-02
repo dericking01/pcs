@@ -107,6 +107,7 @@ export const SOLUTIONS: Solution[] = [
     documents: [
       { label: "Terms & Conditions", url: "/docs/Nominate App Terms and Condition.pdf" },
       { label: "Privacy Policy", url: "/docs/Privacy Policy for the Nominate App.pdf" },
+      { label: "Account Deletion", url: "/docs/Account_Deletion_Nominate_by_Pannecia_Apps.pdf" },
     ],
   },
   {
