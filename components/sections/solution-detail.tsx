@@ -9,6 +9,7 @@ import { AuroraBackground } from "@/components/shared/aurora-background";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { GooglePlayBadge } from "@/components/ui/google-play-badge";
 import { ScreenshotGallery } from "@/components/sections/screenshot-gallery";
+import { AccountDeletionForm } from "@/components/sections/account-deletion-form";
 import { SOLUTIONS } from "@/constants/solutions";
 
 export function SolutionDetail({ slug }: { slug: string }) {
@@ -191,6 +192,8 @@ export function SolutionDetail({ slug }: { slug: string }) {
           </div>
         </section>
       )}
+
+      {solution.accountDeletion && <AccountDeletionForm appName={solution.title} />}
 
       <AnimatePresence>
         {lightboxIndex !== null && (

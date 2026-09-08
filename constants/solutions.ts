@@ -26,6 +26,7 @@ export interface Solution {
   screenshots?: string[];
   logoImage?: string;
   documents?: { label: string; url: string }[];
+  accountDeletion?: boolean;
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -109,6 +110,7 @@ export const SOLUTIONS: Solution[] = [
       { label: "Privacy Policy", url: "/docs/Privacy Policy for the Nominate App.pdf" },
       { label: "Account Deletion", url: "/docs/Account_Deletion_Nominate_by_Pannecia_Apps.pdf" },
     ],
+    accountDeletion: true,
   },
   {
     slug: "infoma",
