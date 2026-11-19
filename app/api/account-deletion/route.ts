@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 interface AccountDeletionPayload {
+  app?: string;
   email?: string;
   username?: string;
   phone?: string;
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
   // Server-side receipt of the request. Wire this up to an email/CRM
   // provider (e.g. Resend, SES) to notify the PCS team.
   console.log("[account-deletion] new request", {
+    app: body.app,
     email: body.email,
     username: body.username,
     phone: body.phone,

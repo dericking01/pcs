@@ -8,11 +8,21 @@ import {
   BarChart3,
   Trophy,
   ShieldAlert,
+  ShieldCheck,
+  FileText,
+  UserX,
   Route,
   Megaphone,
   HeartPulse,
   GraduationCap,
 } from "lucide-react";
+
+export interface LegalPage {
+  slug: string;
+  label: string;
+  description: string;
+  icon: LucideIcon;
+}
 
 export interface Solution {
   slug: string;
@@ -27,6 +37,7 @@ export interface Solution {
   logoImage?: string;
   documents?: { label: string; url: string }[];
   accountDeletion?: boolean;
+  legalPages?: LegalPage[];
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -119,7 +130,7 @@ export const SOLUTIONS: Solution[] = [
     description:
       "A cybersecurity monitoring and threat intelligence platform that continuously monitors servers, websites, and social media accounts — with phishing and scam detection to flag malicious content before it causes harm.",
     icon: ShieldAlert,
-    accent: "from-red-500/20 to-rose-500/10 text-red-300",
+    accent: "from-emerald-500/20 to-lime-500/10 text-emerald-300",
     logoImage: "/products/informa.jpeg",
     keyFeatures: [
       "Server, website, and social media monitoring",
@@ -127,6 +138,38 @@ export const SOLUTIONS: Solution[] = [
       "Phishing email and malicious URL scanning",
       "Centralized digital asset management",
       "Security incident reporting dashboard",
+    ],
+    screenshots: [
+      "/products/infoma/infoma6.jpeg",
+      "/products/infoma/infoma5.jpeg",
+      "/products/infoma/infoma7.jpeg",
+      "/products/infoma/infoma4.jpeg",
+      "/products/infoma/infoma2.jpeg",
+      "/products/infoma/infoma3.jpeg",
+      "/products/infoma/infoma1.jpeg",
+    ],
+    legalPages: [
+      {
+        slug: "terms-of-service",
+        label: "Terms of Service",
+        description:
+          "The rules for using the Infoma app — accounts, licensing, subscriptions, and liability.",
+        icon: FileText,
+      },
+      {
+        slug: "privacy-policy",
+        label: "Privacy Policy",
+        description:
+          "What data Infoma collects, how it is used and protected, and the choices you have.",
+        icon: ShieldCheck,
+      },
+      {
+        slug: "account-deletion",
+        label: "Account Deletion",
+        description:
+          "How to delete your Infoma account and what happens to your data afterwards.",
+        icon: UserX,
+      },
     ],
   },
   {

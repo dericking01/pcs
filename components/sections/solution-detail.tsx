@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { GooglePlayBadge } from "@/components/ui/google-play-badge";
 import { ScreenshotGallery } from "@/components/sections/screenshot-gallery";
 import { AccountDeletionForm } from "@/components/sections/account-deletion-form";
+import { LegalPageCard } from "@/components/legal/legal-document";
 import { SOLUTIONS } from "@/constants/solutions";
 
 export function SolutionDetail({ slug }: { slug: string }) {
@@ -193,6 +194,33 @@ export function SolutionDetail({ slug }: { slug: string }) {
         </section>
       )}
 
+      {solution.legalPages && solution.legalPages.length > 0 && (
+        <section className="relative bg-[#020617] pb-20">
+          <div className="container-px mx-auto max-w-7xl">
+            <SectionHeading eyebrow="Documentation" title="Policies & agreements" className="mb-10" />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {solution.legalPages.map((page, i) => (
+                <motion.div
+                  key={page.slug}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px 0px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                >
+                  <LegalPageCard
+                    href={`/solutions/${solution.slug}/${page.slug}`}
+                    label={page.label}
+                    description={page.description}
+                    icon={page.icon}
+                    accent={solution.accent}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {solution.accountDeletion && <AccountDeletionForm appName={solution.title} />}
 
       <AnimatePresence>
@@ -240,7 +268,7 @@ export function SolutionDetail({ slug }: { slug: string }) {
                 alt={`${solution.title} screenshot ${lightboxIndex + 1}`}
                 width={900}
                 height={1600}
-                className="h-[85vh] w-auto object-contain"
+                className="h-auto max-h-[85vh] w-auto max-w-[85vw] object-contain"
               />
             </motion.div>
 

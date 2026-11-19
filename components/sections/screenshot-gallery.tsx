@@ -94,6 +94,7 @@ export function ScreenshotGallery({ screenshots, alt, onSelect }: ScreenshotGall
               alt={`${alt} screenshot ${i + 1}`}
               width={225}
               height={400}
+              sizes="(min-width: 768px) 960px, 740px"
               className="h-[360px] w-auto object-cover transition-transform duration-500 group-hover:scale-[1.03] md:h-[460px]"
             />
           </motion.button>

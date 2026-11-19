@@ -9,7 +9,13 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function AccountDeletionForm({ appName }: { appName: string }) {
+export function AccountDeletionForm({
+  appName,
+  accent = "from-yellow-500/20 to-amber-500/10 text-yellow-300",
+}: {
+  appName: string;
+  accent?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -82,7 +88,7 @@ export function AccountDeletionForm({ appName }: { appName: string }) {
                 className="flex flex-col gap-5"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-500/10 text-yellow-300">
+                  <div className={`flex size-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${accent}`}>
                     <UserX className="size-5" />
                   </div>
                   <div>
@@ -93,6 +99,7 @@ export function AccountDeletionForm({ appName }: { appName: string }) {
                   </div>
                 </div>
 
+                <input type="hidden" name="app" value={appName} />
                 <Field
                   label="Email address"
                   name="email"
@@ -101,7 +108,7 @@ export function AccountDeletionForm({ appName }: { appName: string }) {
                   placeholder="you@example.com"
                 />
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  <Field label="Username" name="username" placeholder="Your Nominate username" />
+                  <Field label="Username" name="username" placeholder={`Your ${appName} username`} />
                   <Field label="Phone number" name="phone" type="tel" placeholder="+255 7XX XXX XXX" />
                 </div>
 
